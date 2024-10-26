@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HOMEPAGE</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kalnia:wdth,wght@113.4,100..700&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        body {
+            margin: 0;
+            background-color: #EEEBDD;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #561C24;
+            color: #fbf6f7;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+        }
+        h1{
+            margin: 0;
+            padding: 15px;
+        }
+        h1 {
+            font-family: "Kalnia", serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 113.4;
+        }
+        nav {
+            display: flex;
+            margin-left: auto;
+        }
+        .button_header a {
+            margin: 0;
+            padding: 15px;
+            font-size: 15px;
+            color: inherit;
+            text-decoration: none;
+            font-family: "Kalnia", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 113.4;
+        }
+        .button_header a:hover{
+            color: #fff7ec;
+            font-size: larger;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .social_icons {
+            display: flex;
+            margin: 0;
+            padding: 15px;
+            margin-left: auto;
+            gap:10px
+        }
+        .social_icons a img {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+        }
+        #title_promo1,#title_promo2{
+            text-align: center;
+            color: #7D0A0A;
+            font-size: 45px;
+            margin: 20px 0;
+            font-family: "Kalnia", serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 102;
+        }
+
+        .bus-banner {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .bus-content {
+            width: 25%;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px 8px 8px 8px;
+            background-color: #820300;
+            color: #e8e6e4;
+            text-align: center;
+            overflow: hidden; /* Reintroducing overflow hidden to prevent image overflow issues */
+        }
+
+        .bus-content img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .bus-content img:hover {
+            transform: scale(1.20);
+        }
+
+        #menu {
+            font-size: 25px;
+            cursor: pointer;
+            color: #ffffff;
+            margin-top: 10px;
+            display: block;
+            background-color: #820300;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        #menu:hover {
+            background-color: #813131;
+        }
+        
+        table {
+        border-collapse: collapse;
+    }
+        th, td {
+        border: 1px dashed black; /* Dashed border */
+        padding: 8px;
+        text-align: left;
+    }
+        th {
+        background-color: #f2f2f2;
+    }
+    </style>
+<body>
+        <header>
+            <h1>DIPLOMA IN COMPUTER SCIENCE</h1>
+            <nav class="button_header">
+                <a href="HOMEPAGE.html">HOME &#711;</a>
+                <a href="HOMEPAGE.html#title_promo1">COURSES &#711;</a>
+                <a href="check_booking.html">CHECK SCHEDULE &#711;</a>
+            </nav>
+        </header>
+    
+        <h2>Hello {{nickname}} --This is calling variable nickname from views.py</h2>
+    
+        <div>
+            <p>This is link for adding new mentor</p>
+            <a href="{% url 'newmentor' %}">Add New Mentor</a>
+        
+            <p>This is link for adding new student</p>
+            <a href="{% url 'newstudent' %}">Add New Student</a>
+        
+            <!-- Display Programmes -->
+            <ul>
+                {% for x in myprogramme %}
+                    <li>{{ x.programmename }} || {{ x.programmecode }}</li>
+                {% endfor %}
+            </ul>
+            <br><br>
+            <!-- Display Mentors -->
+            <table>
+                <tr>
+                    <th>Mentor ID</th>
+                    <th>Mentor Name</th>
+                    <th>Mentor Student</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for x in mymentor %}
+                <tr>
+                    <td>{{ x.mentorid }}</td>
+                    <td>{{ x.mentorname }}</td>
+                    <td>{{ x.mentor_student }}</td>
+                    <td><a href="{% url 'updatementor' x.mentorid %}">UPDATE</a></td>
+                    <td><a href="{% url 'newmentor' %}">DELETE</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br><br>
+            <!-- Display Students -->
+            <table>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Student Hobby</th>
+                    <th>Student Programme</th>
+                    <th>Mentor ID</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for x in mystudent %}
+                <tr>
+                    <td>{{ x.studentid }}</td>
+                    <td>{{ x.studentname }}</td>
+                    <td>{{ x.studenthobby }}</td>
+                    <td>{{ x.studentprogramme_id }}</td>
+                    <td>{{ x.studmentorid_id }}</td>
+                    <td><a href="{% url 'updatestudent' x.studentid %}">UPDATE</a></td>
+                    <td><a href="{% url 'newmentor' %}">DELETE</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+    
+        </div>
+            <h2 id="title_promo2">OUR AMAZING SUBJECTS</h2>
+        </div>
+        <div class="bus-banner">
+            <div class="bus-content">
+                {% load static %}
+                <img src="{% static '/picture/mayang.png' %}" alt="Mayang">
+                <p class="bus_promo">MAYANG SARI</p>
+                <p>established in 1993</p>
+                <p class="rate">4.4/5</p>
+                <a id="menu" href="{% url 'catalogue_ms' %}">READ MORE</a>
+            </div>
+            <div class="bus-content">
+                <img src="{% static 'picture/plusliner.png' %}" alt="Plusliner">
+                <p class="bus_promo">PLUSLINER</p>
+                <p>established in 2007</p>
+                <p class="rate">4.1/5</p>
+                <a id="menu" href="{% url 'catalogue_ms' %}">READ MORE</a>
+            </div>
+            <div class="bus-content">
+                <img src="{% static 'picture/maraliner.png' %}" alt="Maraliner">
+                <p class="bus_promo">MARALINER</p>
+                <p>established in 1985</p>
+                <p class="rate">4.0/5</p>
+                <a id="menu" href="{% url 'catalogue_ms' %}">READ MORE</a>
+            </div>
+            <div class="bus-content">
+                <img src="{% static 'picture/cepat1.png' %}" alt="Cepat">
+                <p class="bus_promo">CEPAT EKSPRESS</p>
+                <p>established in 1980</p>
+                <p class="rate">4.7/5</p>
+                <a id="menu" href="{% url 'catalogue_ms' %}">READ MORE</a>
+            </div>
+        </div>
+    </body>
+    </html>

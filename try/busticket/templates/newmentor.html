@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW MENTOR</title>
+</head>
+<style>
+        body {
+            margin: 0;
+            background-color: #EEEBDD;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #561C24;
+            color: #fbf6f7;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+        }
+        h1{
+            margin: 0;
+            padding: 15px;
+        }
+        h1 {
+            font-family: "Kalnia", serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 113.4;
+        }
+        nav {
+            display: flex;
+            margin-left: auto;
+        }
+        .button_header a {
+            margin: 0;
+            padding: 15px;
+            font-size: 15px;
+            color: inherit;
+            text-decoration: none;
+            font-family: "Kalnia", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 113.4;
+        }
+        .button_header a:hover{
+            color: #fff7ec;
+            font-size: larger;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        table {
+        border-collapse: collapse;
+    }
+        th, td {
+        border: 1px dashed black; /* Dashed border */
+        padding: 8px;
+        text-align: left;
+    }
+        th {
+        background-color: #f2f2f2;
+    }
+</style>
+<body>
+    <header>
+        <h1>DIPLOMA IN COMPUTER SCIENCE</h1>
+        <nav class="button_header">
+            <a href="HOMEPAGE.html">HOME &#711;</a>
+            <a href="HOMEPAGE.html#title_promo1">COURSES &#711;</a>
+            <a href="check_booking.html">CHECK SCHEDULE &#711;</a>
+        </nav>
+    </header>
+    <div>
+        <h2>Add New Mentor</h2>
+    
+        <form action="{% url 'newmentor' %}" method="post">
+            {% csrf_token %}
+            <label for="mentorid">Enter mentor id:</label><br>
+            <input type="text" id="mentorid" name="mentorid"><br>
+    
+            <label for="mentorname">Enter mentor name:</label><br>
+            <input type="text" id="mentorname" name="mentorname"><br>
+    
+            <label for="mentor_student">Enter mentor total student:</label><br>
+            <input type="text" id="mentor_student" name="mentor_student"><br><br>
+    
+            <input type="submit" value="Submit">
+        </form>
+    
+        <h3>Mentors List</h3>
+        <table>
+            <tr>
+                <th>Mentor ID</th>
+                <th>Mentor Name</th>
+                <th>Mentor Student</th>
+            </tr>
+            {% for x in mymentor %}
+            <tr>
+                <td>{{ x.mentorid }}</td>
+                <td>{{ x.mentorname }}</td>
+                <td>{{ x.mentor_student }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <p>This is link to homepage</p>
+    <a href="{% url 'index' %}">Homepage</a>
+</body>
+</html>

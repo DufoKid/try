@@ -1,0 +1,28 @@
+you need to open cmd in selected folder
+type django-admin startproject projectname
+2nd open the project folder and open cmd
+type py manage.py runserver to see the rocket
+3rd in cmd
+type py manage.py startapp appname
+4th open folder and select the folder with project name
+open setting.py then add the appname in installed apps
+5th add urls.py in app folder
+6th create new folder(TEMPLATE) in app folder and insert html in there
+7th create static folder in app folder and insert all picture there
+8th add url link in urls.py in project folder which is domain link
+9th add request in views.py in app folder
+10th add url link in urls.py in app folder
+
+to ensure pictures are load, we need to use {% load static }
+
+
+practical
+-create django project
+-create django app
+-add application into settings
+-define model
+-create class
+-correctly define field/ data type
+-correctly define relationship
+-make migrations and migrate
+-using terminal for CRUD operation

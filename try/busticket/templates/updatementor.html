@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPDATE MENTOR</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #EEEBDD;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #561C24;
+            color: #fbf6f7;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+            top: 0;
+        }
+        h1 {
+            margin: 0;
+            padding: 15px;
+            font-family: "Kalnia", serif;
+            font-weight: 600;
+            font-variation-settings: "wdth" 113.4;
+        }
+        nav {
+            display: flex;
+            margin-left: auto;
+        }
+        .button_header a {
+            margin: 0;
+            padding: 15px;
+            font-size: 15px;
+            color: inherit;
+            text-decoration: none;
+            font-family: "Kalnia", serif;
+            font-variation-settings: "wdth" 113.4;
+        }
+        .button_header a:hover {
+            color: #fff7ec;
+            font-size: larger;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px dashed black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DIPLOMA IN COMPUTER SCIENCE</h1>
+        <nav class="button_header">
+            <a href="HOMEPAGE.html">HOME &#711;</a>
+            <a href="HOMEPAGE.html#title_promo1">COURSES &#711;</a>
+            <a href="check_booking.html">CHECK SCHEDULE &#711;</a>
+        </nav>
+    </header>
+
+    <div>
+        <h2>Update Mentor</h2>
+        
+        <!-- Display the message dynamically -->
+        <p>{{ message }}</p>
+
+        <form action="{% url 'updatedatamentor' mentor.mentorid %}" method="post">
+            {% csrf_token %}
+            <label for="mentorid">Mentor ID:</label><br>
+            <input type="text" id="mentorid" name="mentorid" value="{{ mentor.mentorid }}" readonly><br><br>
+        
+            <label for="mentorname">Mentor Name:</label><br>
+            <input type="text" id="mentorname" name="mentorname" value="{{ mentor.mentorname }}"><br><br>
+        
+            <label for="mentor_student">Total Students:</label><br>
+            <input type="text" id="mentor_student" name="mentor_student" value="{{ mentor.mentor_student }}"><br><br>
+        
+            <input type="submit" value="Update Mentor">
+        </form>
+        
+        
+
+        <!-- Updated Mentor Information Section -->
+        <!--{% if updated_mentor %}
+        <h3>Updated Mentor Information</h3>
+        <table>
+            <tr>
+                <th>Mentor ID</th>
+                <th>Mentor Name</th>
+                <th>Total Students</th>
+            </tr>
+            <tr>
+                <td>{{ updated_mentor.mentorid }}</td>
+                <td>{{ updated_mentor.mentorname }}</td>
+                <td>{{ updated_mentor.mentor_student }}</td>
+            </tr>
+        </table>
+        {% endif %}-->
+
+        <!-- Mentors List Section -->
+        <h3>Mentors List</h3>
+        <table>
+            <tr>
+                <th>Mentor ID</th>
+                <th>Mentor Name</th>
+                <th>Total Students</th>
+            </tr>
+            {% for x in mymentor %}
+            <tr>
+                <td>{{ x.mentorid }}</td>
+                <td>{{ x.mentorname }}</td>
+                <td>{{ x.mentor_student }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="{% url 'index' %}">Back to Homepage</a>
+    </div>
+</body>
+</html>
